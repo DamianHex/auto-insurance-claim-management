@@ -20,9 +20,11 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
     private String streetAddress;
     private String city;
     private String state;
+    private String zip;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
