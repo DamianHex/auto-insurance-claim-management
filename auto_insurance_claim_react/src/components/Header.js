@@ -4,7 +4,9 @@ function Header(){
   return (
     <div className='container'>
       <div className='jumbotron'>
-        <h1>Car Insurance Claim Submission Form</h1>
+        <h1 className='text-bg-secondary p-3'>
+          Car Insurance Claim Submission Form
+        </h1>
       </div>
     </div>
   );
