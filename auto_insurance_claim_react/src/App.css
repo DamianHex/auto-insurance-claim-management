@@ -13,6 +13,16 @@
   }
 }
 
+#carImage {
+  max-width: 25rem;
+  align-self: center;
+}
+
+#cardTitle {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
