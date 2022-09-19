@@ -16,7 +16,7 @@ public class Claim {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long claimId;
     private String vehicleYear;
     private String vehicleMake;
     private String vehicleModel;
@@ -25,7 +25,7 @@ public class Claim {
     private String description;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "userId")
     private User user;
 
 
