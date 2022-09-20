@@ -1,7 +1,7 @@
 import React from "react";
 import CarImage from "../../src/images/car-insurance.jpeg";
 
-function Homepage() {
+function Homepage () {
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Welcome to Deleon Car Insurance!</h1>
@@ -33,8 +33,8 @@ function Homepage() {
               Sign into your account
             </p>
             <form className='m-3'>
-              <div class='mb-3'>
-                <label for='exampleInputEmail1' class='form-label'>
+              <div className='mb-3'>
+                <label htmlFor='exampleInputEmail1' className='form-label'>
                   Username{" "}
                   <span style={{ fontSize: "13px" }}>
                     (this is the email you signed up with)
@@ -42,25 +42,25 @@ function Homepage() {
                 </label>
                 <input
                   type='email'
-                  class='form-control'
+                  className='form-control'
                   id='exampleInputEmail1'
                   aria-describedby='emailHelp'
                 />
-                <div id='emailHelp' class='form-text'>
+                <div id='emailHelp' className='form-text'>
                   We'll never share your email with anyone else.
                 </div>
               </div>
-              <div class='mb-3'>
-                <label for='exampleInputPassword1' class='form-label'>
+              <div className='mb-3'>
+                <label htmlFor='exampleInputPassword1' className='form-label'>
                   Password
                 </label>
                 <input
                   type='password'
-                  class='form-control'
+                  className='form-control'
                   id='exampleInputPassword1'
                 />
               </div>
-              <button type='submit' class='btn btn-primary'>
+              <button type='submit' className='btn btn-primary'>
                 Sign In
               </button>
             </form>
@@ -72,4 +72,4 @@ function Homepage() {
   );
 }
 
-export default Homepage();
+export default Homepage;

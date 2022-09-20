@@ -1,6 +1,8 @@
 import React from "react";
+// import API from "../utils/API"
 
-function UserRegisterForm() {
+function UserRegisterForm () {
+
   return (
     <div style={{ textAlign: "center" }}>
       <h2>User Registration From</h2>
@@ -9,27 +11,32 @@ function UserRegisterForm() {
           <p id='cardTitle'>Set your login credentials</p>
 
           <div className='row'>
-            <label htmlFor='email' className='col-sm-3 col-form-label'>
+            <label htmlFor='newEmail' className='col-sm-3 col-form-label'>
               Email
             </label>
             <div className='col-sm-8'>
               <input
                 type='text'
                 className='form-control col-sm-4'
-                id='email'
-                placeholder='email@example.com'
+                name='newEmail'
+                id='newEmail'
+                placeholder={'email@example.com'}
               />
             </div>
           </div>
           <div className='row'>
-            <label htmlFor='inputPassword' className='col-sm-3 col-form-label'>
-              Password
+            <label
+              htmlFor='newInputPassword'
+              className='col-sm-3 col-form-label'
+            >
+              password
             </label>
             <div className='col-sm-8'>
               <input
                 type='password'
                 className='form-control col-sm-4'
-                id='inputPassword'
+                name='password'
+                id='newInputPassword'
               />
             </div>
           </div>
@@ -38,12 +45,13 @@ function UserRegisterForm() {
           <p id='cardTitle'>Customer Information</p>
           <div className='row'>
             <label htmlFor='firstNameInput' className='col-sm-3 col-form-label'>
-              First Name
+              Frist Name           
             </label>
             <div className='col-sm-8'>
               <input
                 type='text'
                 className='form-control'
+                name='firstName'
                 id='firstNameInput'
                 placeholder='First Name'
               />
@@ -57,6 +65,7 @@ function UserRegisterForm() {
               <input
                 type='text'
                 className='form-control'
+                name='lastName'
                 id='lasttNameInput'
                 placeholder='Last Name'
               />
@@ -68,12 +77,13 @@ function UserRegisterForm() {
                 htmlFor='streetAddressInput'
                 className='order-1 p-2 form-label'
               >
-                Street Address
+                Address
               </label>
               <div>
                 <input
                   type='text'
                   className='form-control'
+                  name='streetAddress'
                   id='streetAddressInput'
                   placeholder='00000 Street Name'
                 />
@@ -87,6 +97,7 @@ function UserRegisterForm() {
                 <input
                   type='text'
                   className='form-control'
+                  name='city'
                   id='cityInput'
                   placeholder='City'
                 />
@@ -100,6 +111,7 @@ function UserRegisterForm() {
                 <input
                   type='text'
                   className='form-control'
+                  name='state'
                   id='stateInput'
                   placeholder='State'
                 />
@@ -107,25 +119,28 @@ function UserRegisterForm() {
             </div>{" "}
             <div className='p-2 flex-fill'>
               <label htmlFor='zipCodeInput' className='order-4 p-2 form-label'>
-                Zip Code
+                 Zip
               </label>
               <div>
                 <input
                   type='text'
                   className='form-control'
+                  name='zip'
                   id='zipCodeInput'
                   placeholder='Zip Code'
                 />
               </div>
             </div>
           </div>
-          <button type='button' className='btn btn-primary'>
-            Register
-          </button>
+          <div style={{ margin: "15px" }}>
+            <button type='button' className='btn btn-primary'>
+              Register
+            </button>
+          </div>
         </form>
       </div>
     </div>
   );
 }
 
-export default UserRegisterForm();
+export default UserRegisterForm;
