@@ -20,7 +20,7 @@ public class Claim {
     private String vehicleYear;
     private String vehicleMake;
     private String vehicleModel;
-    private Date creationDate;
+    private String creationDate;
     private String status;
     private String description;
 
