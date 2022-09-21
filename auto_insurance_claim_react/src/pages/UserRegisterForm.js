@@ -1,13 +1,47 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import API from "../utils/API";
 // import API from "../utils/API"
 
 function UserRegisterForm () {
+
+  const [user, setUser] = useState({
+    userId: 0,
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    streetAddress: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
+
+    const [formObject, setFormObject] = useState({});
+
+    const textUpdate = (e) => {
+      const { name, value } = e.target;
+      setFormObject({ ...formObject, [name]: value });
+    };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      API.createUser({
+        firstName: formObject.firstName,
+        lastName: formObject.lastName,
+        email: formObject.email,
+        password: formObject.password,
+        streetAddress: formObject.streetAddress,
+        city: formObject.city,
+        state: formObject.state,
+        zip: formObject.zip,
+      });
+    }
 
   return (
     <div style={{ textAlign: "center" }}>
       <h2>User Registration From</h2>
       <div className='card m-5' id='cardBox'>
-        <form className='container'>
+        <form className='container' onSubmit={handleSubmit}>
           <p id='cardTitle'>Set your login credentials</p>
 
           <div className='row'>
@@ -18,9 +52,10 @@ function UserRegisterForm () {
               <input
                 type='text'
                 className='form-control col-sm-4'
-                name='newEmail'
+                name='email'
                 id='newEmail'
                 placeholder={"email@example.com"}
+                onChange={textUpdate}
               />
             </div>
           </div>
@@ -37,6 +72,7 @@ function UserRegisterForm () {
                 className='form-control col-sm-4'
                 name='password'
                 id='newInputPassword'
+                onChange={textUpdate}
               />
             </div>
           </div>
@@ -54,6 +90,7 @@ function UserRegisterForm () {
                 name='firstName'
                 id='firstNameInput'
                 placeholder='First Name'
+                onChange={textUpdate}
               />
             </div>
           </div>
@@ -68,6 +105,7 @@ function UserRegisterForm () {
                 name='lastName'
                 id='lasttNameInput'
                 placeholder='Last Name'
+                onChange={textUpdate}
               />
             </div>
           </div>
@@ -77,7 +115,7 @@ function UserRegisterForm () {
                 htmlFor='streetAddressInput'
                 className='order-1 p-2 col-form-label'
               >
-                Address
+                Street Address
               </label>
               <div>
                 <input
@@ -86,6 +124,7 @@ function UserRegisterForm () {
                   name='streetAddress'
                   id='streetAddressInput'
                   placeholder='00000 Street Name'
+                  onChange={textUpdate}
                 />
               </div>
             </div>
@@ -100,6 +139,7 @@ function UserRegisterForm () {
                   name='city'
                   id='cityInput'
                   placeholder='City'
+                  onChange={textUpdate}
                 />
               </div>
             </div>
@@ -117,6 +157,7 @@ function UserRegisterForm () {
                   name='state'
                   id='stateInput'
                   placeholder='State'
+                  onChange={textUpdate}
                 />
               </div>
             </div>{" "}
@@ -134,12 +175,13 @@ function UserRegisterForm () {
                   name='zip'
                   id='zipCodeInput'
                   placeholder='Zip Code'
+                  onChange={textUpdate}
                 />
               </div>
             </div>
           </div>
           <div style={{ margin: "15px" }}>
-            <button type='button' className='btn btn-primary'>
+            <button className='btn btn-primary'>
               Register
             </button>
           </div>
