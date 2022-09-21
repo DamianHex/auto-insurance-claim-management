@@ -13,16 +13,6 @@
   }
 }
 
-#carImage {
-  max-width: 25rem;
-  align-self: center;
-}
-
-#cardTitle {
-  text-decoration: underline;
-  font-weight: bold;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -36,6 +26,25 @@
 
 .App-link {
   color: #61dafb;
+}
+
+#cardBox{
+  background-color: lightgray;
+}
+
+#carImage {
+  max-width: 25rem;
+  align-self: center;
+}
+
+#cardTitle {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.col-form-label {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
 @keyframes App-logo-spin {

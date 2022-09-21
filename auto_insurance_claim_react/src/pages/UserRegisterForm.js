@@ -6,7 +6,7 @@ function UserRegisterForm () {
   return (
     <div style={{ textAlign: "center" }}>
       <h2>User Registration From</h2>
-      <div className='card m-5'>
+      <div className='card m-5' id='cardBox'>
         <form className='container'>
           <p id='cardTitle'>Set your login credentials</p>
 
@@ -20,7 +20,7 @@ function UserRegisterForm () {
                 className='form-control col-sm-4'
                 name='newEmail'
                 id='newEmail'
-                placeholder={'email@example.com'}
+                placeholder={"email@example.com"}
               />
             </div>
           </div>
@@ -29,7 +29,7 @@ function UserRegisterForm () {
               htmlFor='newInputPassword'
               className='col-sm-3 col-form-label'
             >
-              password
+              Password
             </label>
             <div className='col-sm-8'>
               <input
@@ -45,7 +45,7 @@ function UserRegisterForm () {
           <p id='cardTitle'>Customer Information</p>
           <div className='row'>
             <label htmlFor='firstNameInput' className='col-sm-3 col-form-label'>
-              Frist Name           
+              Frist Name
             </label>
             <div className='col-sm-8'>
               <input
@@ -75,7 +75,7 @@ function UserRegisterForm () {
             <div className='p-2 flex-fill'>
               <label
                 htmlFor='streetAddressInput'
-                className='order-1 p-2 form-label'
+                className='order-1 p-2 col-form-label'
               >
                 Address
               </label>
@@ -90,7 +90,7 @@ function UserRegisterForm () {
               </div>
             </div>
             <div className='p-2 flex-fill'>
-              <label htmlFor='cityInput' className='order-2 p-2 form-label'>
+              <label htmlFor='cityInput' className='order-2 p-2 col-form-label'>
                 City
               </label>
               <div>
@@ -104,7 +104,10 @@ function UserRegisterForm () {
               </div>
             </div>
             <div className='p-2 flex-fill'>
-              <label htmlFor='stateInput' className='order-3 p-2 form-label'>
+              <label
+                htmlFor='stateInput'
+                className='order-3 p-2 col-form-label'
+              >
                 State
               </label>
               <div>
@@ -118,8 +121,11 @@ function UserRegisterForm () {
               </div>
             </div>{" "}
             <div className='p-2 flex-fill'>
-              <label htmlFor='zipCodeInput' className='order-4 p-2 form-label'>
-                 Zip
+              <label
+                htmlFor='zipCodeInput'
+                className='order-4 p-2 col-form-label'
+              >
+                Zip
               </label>
               <div>
                 <input

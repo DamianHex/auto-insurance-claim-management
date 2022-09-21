@@ -27,7 +27,7 @@ function ClaimSubmissionForm() {
     <>
       <div style={{ textAlign: "center" }}>
         <h2>Claims Submission Form</h2>
-        <div className='card m-5'>
+        <div className='card m-5' id='cardBox'>
           <form className='container' onSubmit={handleSubmit}>
             <p id='cardTitle'>Your Information</p>
 
@@ -119,7 +119,10 @@ function ClaimSubmissionForm() {
 
             <div className='d-flex flex-wrap'>
               <div className='p-2 flex-fill'>
-                <label htmlFor='vehicleYear' className='order-1 p-2 form-label'>
+                <label
+                  htmlFor='vehicleYear'
+                  className='order-1 p-2 col-form-label'
+                >
                   Vehicle Year
                 </label>
                 <div>
@@ -132,7 +135,10 @@ function ClaimSubmissionForm() {
                 </div>
               </div>
               <div className='p-2 flex-fill'>
-                <label htmlFor='vehicleMake' className='order-2 p-2 form-label'>
+                <label
+                  htmlFor='vehicleMake'
+                  className='order-2 p-2 col-form-label'
+                >
                   Vehicle Make
                 </label>
                 <div>
@@ -147,7 +153,7 @@ function ClaimSubmissionForm() {
               <div className='p-2 flex-fill'>
                 <label
                   htmlFor='vehicleModel'
-                  className='order-3 p-2 form-label'
+                  className='order-3 p-2 col-form-label'
                 >
                   Vehical Model
                 </label>
