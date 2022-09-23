@@ -14,7 +14,7 @@ public interface ClaimService {
 
     Claim createNewClaim(Claim claim);
 
-    Claim updateClaim(Claim claim);
+    Claim updateClaim(Claim claim, Long id);
 
     Claim assignUserToClaim(Long claimId, Long userId);
 

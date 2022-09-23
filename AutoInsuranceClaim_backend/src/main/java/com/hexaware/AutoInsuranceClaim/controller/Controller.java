@@ -42,9 +42,9 @@ public class Controller {
         return claimService.getClaimById(id);
     }
     // this will be used to update the status to rejected
-    @PutMapping("/claim")
-    public Claim updateClaim(@RequestBody Claim claim){
-        return claimService.updateClaim(claim);
+    @PutMapping("/claim/{id}")
+    public Claim updateClaim(@PathVariable long id , @RequestBody Claim claim){
+        return claimService.updateClaim(claim, id);
     }
 
 //    @PutMapping("/claim/{claimId}/user/{userId}")

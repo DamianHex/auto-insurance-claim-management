@@ -43,8 +43,18 @@ public class ClaimsServiceImpl implements ClaimService{
     }
 
     @Override
-    public Claim updateClaim(Claim claim) {
-        return claimRepo.save(claim);
+    public Claim updateClaim(Claim claim, Long id) {
+
+        Claim claim1 = claimRepo.findById(id).get();
+        claim1.setClaimId(id);
+        claim1.setUser(claim.getUser());
+        claim1.setStatus(claim.getStatus());
+        claim1.setCreationDate(claim.getCreationDate());
+        claim1.setDescription(claim.getDescription());
+        claim1.setVehicleMake(claim.getVehicleMake());
+        claim1.setVehicleModel(claim.getVehicleModel());
+        claim1.setVehicleYear(claim.getVehicleYear());
+        return claimRepo.save(claim1);
     }
 
     @Override
