@@ -4,9 +4,6 @@ import axios from "axios";
 axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 const api = "http://localhost:8080/api";
 
-var config = {
-  headers: { "Access-Control-Allow-Origin": "*" },
-};
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -40,14 +37,29 @@ export default {
 
   //Get Single Claim
   getClaimById: function (id) {
+    return (
     axios
-      .get(api + "claim/" + id)
+      .get(api + "/claim/" + id)
       .then(function (response) {
         return response;
       })
       .catch(function (error) {
         console.log(error);
-      });
+      })
+    )
+  },
+
+  getClaimsByUserId: function (id) {
+    return (
+      axios
+      .get(api+"/claims/user/" + id)
+      .then(function (response) {
+        return response;
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+    )
   },
 
   assignUserToClaim: function (claimId, userId) {
@@ -60,28 +72,24 @@ export default {
       });
   },
 
-  // //PUT Claim
+
   // updateClaim: function (data, id) {
 
-  //   axios
-  //     .post(api + "/claim", {
-  //       vehicleYear: data.vehicleYear,
-  //       vehicleMake: data.vehicleMake,
-  //       vehicleModel: data.vehicleModel,
-  //       creationDate: data.creationDate,
-  //       status: "submitted",
-  //       description: data.description,
-  //     })
-  //     .then(function (response) {
-  //       console.log(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // },
+  updateClaim: function (data, claimId){
+    return (
+      axios.put(api+ "/claim/" + claimId)
+      .then(function (response) {
+        return response;
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+    )
+  },
 
   // Delete Claim
   deleteClaim: function (id) {
+    return(
     axios
       .delete(api + "/claim/" + id)
       .then(function (response) {
@@ -89,7 +97,9 @@ export default {
       })
       .catch(function (error) {
         console.log(error);
-      });
+      })
+    )
+
   },
 
   // POST User
@@ -109,12 +119,17 @@ export default {
   },
   // Get Single User
   getUserById: function (id) {
-    axios
-      .get(api + "user/" + id)
-      .then(function (response) {
-        return response;
+    return axios({
+      method: "get",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      url: api + "/user/" + id,
+      id: id,
+    })
+      .then(function(response) {
+        // console.log(response.data)
+        return response.data;
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   },

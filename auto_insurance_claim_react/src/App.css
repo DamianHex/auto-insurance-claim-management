@@ -47,6 +47,15 @@
   font-weight: bold;
 }
 
+#vehicleCard{
+  display: block;
+  margin: 10px;
+  padding: 25px;
+  width: 100%;
+  background-color: rgb(178, 203, 227);
+  border: solid black 2px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

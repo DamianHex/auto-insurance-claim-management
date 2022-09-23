@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import CustomerInfo from "../components/CustomerInfo";
+import API from "../utils/API";
 
 function Test() {
-  const [user, setUser] = useState({
-    name: "Damian",
-  })
+  const [user, setUser] = useState({})
 
+useEffect(() => {
+API.getUserById(1).then((res) => setUser(res))
+})
 
-  return (
-    <div>
-      <h1>{user.name}</h1>
-    </div>
-  )
+  // useEffect(() => {
+  //   API.getUserById(id)
+  //     .then((res) => setUser(res.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+  return <CustomerInfo info={user} />;
 
 }
 

@@ -1,20 +1,20 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import API from "../utils/API";
 // import API from "../utils/API"
 
 function UserRegisterForm () {
 
-  const [user, setUser] = useState({
-    userId: 0,
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    streetAddress: "",
-    city: "",
-    state: "",
-    zip: "",
-  });
+  // const [user, setUser] = useState({
+  //   userId: 0,
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   password: "",
+  //   streetAddress: "",
+  //   city: "",
+  //   state: "",
+  //   zip: "",
+  // });
 
     const [formObject, setFormObject] = useState({});
 
@@ -81,7 +81,7 @@ function UserRegisterForm () {
           <p id='cardTitle'>Customer Information</p>
           <div className='row'>
             <label htmlFor='firstNameInput' className='col-sm-3 col-form-label'>
-              Frist Name
+              First Name
             </label>
             <div className='col-sm-8'>
               <input
