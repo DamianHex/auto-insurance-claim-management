@@ -37,6 +37,11 @@ public class Controller {
         return claimService.getAllClaims();
     }
 
+    @GetMapping("/unassignedClaims")
+    public List<Claim> getUnassignedClaims() {
+        return claimService.getUnassignedClaims();
+    }
+
     @GetMapping("/claim/{id}")
     public Optional<Claim> getClaimByID(@PathVariable Long id){
         return claimService.getClaimById(id);
@@ -56,6 +61,8 @@ public class Controller {
     public Claim assignUserToClaim(@PathVariable Long claimId, @PathVariable Long userId) {
         return claimService.assignUserToClaim(claimId, userId);
     }
+
+
 
 
     @DeleteMapping("/claim/{id}")
@@ -86,6 +93,7 @@ public class Controller {
     public List<Claim> getClaimsByUserId(@PathVariable Long id){
         return claimService.getAllClaimsByUserId(id);
     }
+
 
     @DeleteMapping("/user/{id}")
     public String deleteUser(@PathVariable Long id){

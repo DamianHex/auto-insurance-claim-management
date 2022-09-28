@@ -8,6 +8,8 @@ import java.util.Optional;
 public interface ClaimService {
 
     List<Claim> getAllClaims();
+
+    List<Claim> getUnassignedClaims();
     Optional<Claim> getClaimById(Long id);
 
     List<Claim> getAllClaimsByUserId(Long id);

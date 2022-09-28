@@ -26,7 +26,17 @@ public class ClaimsServiceImpl implements ClaimService{
         return claimRepo.findAll();
     }
 
+    @Override
+    public List<Claim> getUnassignedClaims() {
+       return claimRepo.findAll().stream().filter(c -> c.getStatus().equals("unassigned")).collect(Collectors.toList());
+    }
+
+    @Override
     public Optional<Claim> getClaimById(Long id) {
+        return Optional.empty();
+    }
+
+    public Optional<Claim> getUseClaimById(Long id) {
         return claimRepo.findById(id);
     }
 

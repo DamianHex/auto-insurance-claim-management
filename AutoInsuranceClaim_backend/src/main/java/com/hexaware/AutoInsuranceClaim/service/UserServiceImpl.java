@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -28,6 +29,7 @@ public class UserServiceImpl implements UserService{
     public Optional<User> getUserById(Long id) {
         return userRepo.findById(id);
     }
+
 
     @Override
     public User createNewUser(User user) {
