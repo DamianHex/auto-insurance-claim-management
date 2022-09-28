@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import API from "../utils/API";
-// import API from "../utils/API"
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "../components/Loading";
 
-function UserRegisterForm () {
+
+function UserProfileForm () {
 
   // const [user, setUser] = useState({
   //   userId: 0,
@@ -16,6 +18,13 @@ function UserRegisterForm () {
   //   zip: "",
   // });
 
+    const user = useAuth0();
+    console.log(user.user)
+    const { sub, email, given_name, family_name } = user.user;
+
+    const [currentUser, setCurrentUser] = useState({})
+
+
     const [formObject, setFormObject] = useState({});
 
     const textUpdate = (e) => {
@@ -26,59 +35,27 @@ function UserRegisterForm () {
     const handleSubmit = (e) => {
       e.preventDefault();
       API.createUser({
+        gid: sub,
         firstName: formObject.firstName,
         lastName: formObject.lastName,
-        email: formObject.email,
-        password: formObject.password,
+        email: email,
         streetAddress: formObject.streetAddress,
         city: formObject.city,
         state: formObject.state,
         zip: formObject.zip,
-      });
+      }).then(res => setCurrentUser(res))
     }
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h2>User Registration From</h2>
+      <h2>User Profile From</h2>
       <div className='card m-5' id='cardBox'>
         <form className='container' onSubmit={handleSubmit}>
-          <p id='cardTitle'>Set your login credentials</p>
-
-          <div className='row'>
-            <label htmlFor='newEmail' className='col-sm-3 col-form-label'>
-              Email
-            </label>
-            <div className='col-sm-8'>
-              <input
-                type='text'
-                className='form-control col-sm-4'
-                name='email'
-                id='newEmail'
-                placeholder={"email@example.com"}
-                onChange={textUpdate}
-              />
-            </div>
-          </div>
-          <div className='row'>
-            <label
-              htmlFor='newInputPassword'
-              className='col-sm-3 col-form-label'
-            >
-              Password
-            </label>
-            <div className='col-sm-8'>
-              <input
-                type='password'
-                className='form-control col-sm-4'
-                name='password'
-                id='newInputPassword'
-                onChange={textUpdate}
-              />
-            </div>
-          </div>
-
-          <hr></hr>
-          <p id='cardTitle'>Customer Information</p>
+          <p id='cardTitle'>
+            Complete your profile by filling in the customer information below
+          </p>
+          {/* just for testing  */}
+           
           <div className='row'>
             <label htmlFor='firstNameInput' className='col-sm-3 col-form-label'>
               First Name
@@ -89,7 +66,7 @@ function UserRegisterForm () {
                 className='form-control'
                 name='firstName'
                 id='firstNameInput'
-                placeholder='First Name'
+                defaultValue={given_name}
                 onChange={textUpdate}
               />
             </div>
@@ -104,7 +81,7 @@ function UserRegisterForm () {
                 className='form-control'
                 name='lastName'
                 id='lasttNameInput'
-                placeholder='Last Name'
+                defaultValue={family_name}
                 onChange={textUpdate}
               />
             </div>
@@ -181,9 +158,7 @@ function UserRegisterForm () {
             </div>
           </div>
           <div style={{ margin: "15px" }}>
-            <button className='btn btn-primary'>
-              Register
-            </button>
+            <button className='btn btn-primary'>Submit Claim</button>
           </div>
         </form>
       </div>
@@ -191,4 +166,6 @@ function UserRegisterForm () {
   );
 }
 
-export default UserRegisterForm;
+export default withAuthenticationRequired(UserProfileForm, {
+  onRedirecting: () => <Loading />,
+});

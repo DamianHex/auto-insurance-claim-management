@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import CarImage from "../../src/images/car-insurance.jpeg";
+import API from "../utils/API";
 
 function LoginSignup () {
+
+  const userRef = useRef();
+  const errRef = useRef();
+
+  const [user, setUser] = useState('');
+  const [password, setPassword ] = useState('');
+  const [errMsg, setErrMsg] = useState('');
+  const [success, setSuccess ] = useState(false);
+
+  useEffect(() => {
+    userRef.current.focus()
+  }, [])
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, [user, password])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+  }
+
   return (
     <div style={{ textAlign: "center" }}>
       <h1>Welcome to Deleon Car Insurance!</h1>
@@ -32,9 +55,9 @@ function LoginSignup () {
             >
               Sign into your account
             </p>
-            <form className='m-3'>
+            <form className='m-3' onSubmit={handleSubmit}>
               <div className='mb-3'>
-                <label htmlFor='exampleInputEmail1' className='form-label'>
+                <label htmlFor='userName' className='form-label'>
                   Username{" "}
                   <span style={{ fontSize: "13px" }}>
                     (this is the email you signed up with)
@@ -43,21 +66,29 @@ function LoginSignup () {
                 <input
                   type='email'
                   className='form-control'
-                  id='exampleInputEmail1'
+                  id='userName'
                   aria-describedby='emailHelp'
+                  ref={userRef}
+                  autoComplete="off"
+                  onChange={(e)=> setUser(e.target.value)}
+                  value={user}
+                  required
                 />
                 <div id='emailHelp' className='form-text'>
                   We'll never share your email with anyone else.
                 </div>
               </div>
               <div className='mb-3'>
-                <label htmlFor='exampleInputPassword1' className='form-label'>
+                <label htmlFor='password' className='form-label'>
                   Password
                 </label>
                 <input
                   type='password'
                   className='form-control'
-                  id='exampleInputPassword1'
+                  id='password'
+                  onChange={(e)=> setPassword(e.target.value)}
+                  value={password}
+                  required
                 />
               </div>
               <button type='submit' className='btn btn-primary'>

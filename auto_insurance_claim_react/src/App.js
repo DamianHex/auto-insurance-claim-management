@@ -1,30 +1,39 @@
 import React from "react";
-import './App.css';
-import Header from './components/Header/index';
-import NavTabs from './components/Navtabs';
+import "./App.css";
+import Header from "./components/Header/index";
+import NavTabs from "./components/Navtabs";
 import { Route, Routes } from "react-router-dom";
-import UserRegisterForm from './pages/UserRegisterForm';
-import ClaimSubmissionForm from './pages/ClaimSubmissionForm';
-import LoginSignup from "./pages/LoginSignup";
-import Test from "./pages/Test";
-import Homepage from "./pages/Homepage";
+import UserRegisterForm from "./views/UserProfileForm";
+import ClaimSubmissionForm from "./views/ClaimSubmissionForm";
+import LoginSignup from "./views/LoginSignup";
+import Test from "./views/Test";
+import Homepage from "./views/Homepage";
+import Auth0ProviderWithHistory from "./auth0Provider";
+import { useAuth0 } from "@auth0/auth0-react";
+import Loading from "./components/Loading";
 
+const App = () => {
+  const { isLoading } = useAuth0();
 
-function App() {
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>
-      <Header />
-      <NavTabs />
-      <Routes>
-        <Route path='/' element={<Homepage/>} />
-        <Route path='/login' element={<LoginSignup />} />
-        <Route path='/register' element={<UserRegisterForm />} />
-        <Route path='/claim' element={<ClaimSubmissionForm />} />
-        <Route path='/test' element={<Test />} />
-      </Routes>
+      <Auth0ProviderWithHistory>
+        <Header />
+        <NavTabs />
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/login' element={<LoginSignup />} />
+          <Route path='/register' element={<UserRegisterForm />} />
+          <Route path='/claim' element={<ClaimSubmissionForm />} />
+          <Route path='/test' element={<Test />} />
+        </Routes>
+      </Auth0ProviderWithHistory>
     </div>
   );
-}
+};
 
 export default App;

@@ -8,7 +8,7 @@ const api = "http://localhost:8080/api";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   //POST Claim
-  saveNewClaim: function (data) {
+  saveNewClaim: function(data) {
     axios({
       method: "post",
       headers: { "Access-Control-Allow-Origin": "*" },
@@ -17,6 +17,7 @@ export default {
     })
       .then(function(response) {
         console.log(response);
+        return response;
       })
       .catch(function(error) {
         console.log(error);
@@ -24,101 +25,99 @@ export default {
   },
 
   //Get All Claims
-  getAllClaims: function () {
-    axios
-      .get(api + "/claims")
-      .then(function (response) {
+  getAllUnassignedClaims: function() {
+    return axios
+      .get(api + "/unassignedClaims")
+      .then(function(response) {
         return response;
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   },
 
   //Get Single Claim
-  getClaimById: function (id) {
-    return (
-    axios
+  getClaimById: function(id) {
+    return axios
       .get(api + "/claim/" + id)
-      .then(function (response) {
-        return response;
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    )
-  },
-
-  getClaimsByUserId: function (id) {
-    return (
-      axios
-      .get(api+"/claims/user/" + id)
-      .then(function (response) {
+      .then(function(response) {
         return response;
       })
       .catch(function(error) {
-        console.log(error);
-      })
-    )
-  },
-
-  assignUserToClaim: function (claimId, userId) {
-    axios.put(api + "claim/" + claimId + "/user/" + userId)
-      .then(function (response) {
-        return response;
-      })
-      .catch(function (error) {
         console.log(error);
       });
   },
 
+  getClaimsByUserId: function(id) {
+    return axios.get(api + "/claims/user/" + id).then(function(response) {
+      if (response.status === 500) {
+        return [];
+      } else {
+        return response;
+      }
+    });
+    // .catch(function(error) {
+    //   console.log(error);
+    // })
+  },
 
-  // updateClaim: function (data, id) {
-
-  updateClaim: function (data, claimId){
-    return (
-      axios.put(api+ "/claim/" + claimId)
-      .then(function (response) {
+  assignUserToClaim: function(claimId, userId) {
+    axios
+      .put(api + "claim/" + claimId + "/user/" + userId)
+      .then(function(response) {
         return response;
       })
       .catch(function(error) {
         console.log(error);
+      });
+  },
+
+  // updateClaim: function (data, id) {
+
+  updateClaim: function(data, claimId) {
+    return axios
+      .put(api + "/claim/" + claimId)
+      .then(function(response) {
+        return response;
       })
-    )
+      .catch(function(error) {
+        console.log(error);
+      });
   },
 
   // Delete Claim
-  deleteClaim: function (id) {
-    return(
-    axios
+  deleteClaim: function(id) {
+    return axios
       .delete(api + "/claim/" + id)
-      .then(function (response) {
+      .then(function(response) {
         console.log(response);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
-      })
-    )
-
+      });
   },
 
   // POST User
-  createUser: function (data) {
+  createUser: function(data) {
     axios({
       method: "post",
       headers: { "Access-Control-Allow-Origin": "*" },
       url: api + "/users",
       data: data,
     })
-   .then(function(response) {
-     console.log(response);
-   })
-   .catch(function(error) {
-     console.log(error);
-   });
+      .then(function(response) {
+        console.log(response.data.userId)
+        return response.data.userId;
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+      .finally(function(response) {
+        
+      })
   },
   // Get Single User
-  getUserById: function (id) {
+  getUserById: function(id) {
     return axios({
       method: "get",
       headers: { "Access-Control-Allow-Origin": "*" },
@@ -154,14 +153,15 @@ export default {
   //     });
   // },
   // Delete User
-  deleteUser: function (id) {
+  deleteUser: function(id) {
     axios
       .delete(api + "/user/" + id)
-      .then(function (response) {
+      .then(function(response) {
         console.log(response);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   },
+  
 };

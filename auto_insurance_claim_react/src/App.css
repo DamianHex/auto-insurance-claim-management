@@ -37,21 +37,17 @@
   align-self: center;
 }
 
-#cardTitle {
-  text-decoration: underline;
-  font-weight: bold;
-}
-
 .col-form-label {
   text-decoration: underline;
   font-weight: bold;
 }
 
 #vehicleCard{
-  display: block;
+  display: inline-block;
+  text-align: center;
   margin: 10px;
   padding: 25px;
-  width: 100%;
+  width: 50%;
   background-color: rgb(178, 203, 227);
   border: solid black 2px;
 }

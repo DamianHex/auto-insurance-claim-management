@@ -7,8 +7,8 @@ function Claims() {
   const [Claims, setClaims] = useState([])
   
   useEffect(() => {
-    API.getClaimsByUserId(1).then((res) => setClaims(res.data))
-  })
+    API.getAllUnassignedClaims().then((res) => setClaims(res.data))
+  }, [])
 
   const handleRejectClaim = (e) => {
     e.preventDefault();
@@ -20,14 +20,12 @@ function Claims() {
 
 return (
   <div>
-    <p id='cardTitle'>Enter Claim Information</p>
-    {Claims.length ? (
+    <h1 id='cardTitle'>Claims History</h1>
+    {Claims.length == 0 ? (
+      <p>No Claims Have Been Filed</p>
+    ) : (
       <div className='container'>
         {Claims.map((claim) => (
-          // ******************                         *********************                        ************
-          //*********************** START HERE - NEED TO GET THE FORM TO SUBMIT THE DATA TO *********************
-          // ******************                         *********************                        ************
-
           <form
             id='vehicleCard'
             key={claim.claimId}
@@ -70,72 +68,7 @@ return (
           </form>
         ))}
       </div>
-    ) : (
-      <p>No Claims Have Been Filed</p>
     )}
-
-    {/* <div className='d-flex flex-wrap'>
-      <div className='p-2 flex-fill'>
-        <label htmlFor='vehicleYear' className='order-1 p-2 col-form-label'>
-          Vehicle Year
-        </label>
-        <div>
-          <input
-            type='text'
-            className='form-control'
-            id='vehicleYear'
-            name='vehicleYear'
-            defaultValue='{vehicle year}'
-            readOnly
-          />
-        </div>
-      </div>
-      <div className='p-2 flex-fill'>
-        <label htmlFor='vehicleMake' className='order-2 p-2 col-form-label'>
-          Vehicle Make
-        </label>
-        <div>
-          <input
-            type='text'
-            className='form-control'
-            id='vehicleMake'
-            name='vehicleMake'
-            defaultValue='{vehicle make}'
-            readOnly
-          />
-        </div>
-      </div>
-      <div className='p-2 flex-fill'>
-        <label htmlFor='vehicleModel' className='order-3 p-2 col-form-label'>
-          Vehical Model
-        </label>
-        <div>
-          <input
-            type='text'
-            className='form-control'
-            id='vehicleModel'
-            name='vehicleModel'
-            defaultValue='{claim.vehicleModel}'
-            readOnly
-          />
-        </div>
-      </div>{" "}
-    </div>
-    <div className='row'>
-      <label htmlFor='description' className='col-sm-3 col-form-label'>
-        Description
-      </label>
-      <div className='col-sm-8'>
-        <input
-          type='text'
-          className='form-control'
-          id='description'
-          name='description'
-          value='{claim description}'
-          readOnly
-        />
-      </div>
-    </div> */}
   </div>
 );
 }
