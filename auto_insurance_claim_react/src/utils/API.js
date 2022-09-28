@@ -38,25 +38,26 @@ export default {
       });
   },
 
-  // //Get Single Claim
-  // getClaimById: function(id) {
-  //   return axios
-  //     .get(api + "/claim/" + id)
-  //     .then(function(response) {
-  //       return response;
-  //     })
-  //     .catch(function(error) {
-  //       console.log(error);
-  //     });
-  // },
+  rejectClaim: function(id, data) {
+    axios({
+      method: "get",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      url: api + "/claim/" + id,
+      id: id,
+    })
+      .then(function(response) {
+        return response;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  },
 
   getClaimsByUserId: function(id) {
-    return axios.get(api + "/claims/user/" + id)
-    .then(function(response) {
-      console.log(response);
+    return axios.get(api + "/claims/user/" + id).then(function(response) {
       return response;
-    })
-    },
+    });
+  },
 
   assignUserToClaim: function(claimId, userId) {
     axios
@@ -69,11 +70,15 @@ export default {
       });
   },
 
-  // updateClaim: function (data, id) {
 
   updateClaim: function(data, claimId) {
-    return axios
-      .put(api + "/claim/" + claimId)
+    axios({
+      method: "put",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      url: api + "/claim/" + claimId,
+      claimId: claimId,
+      data: data
+    })
       .then(function(response) {
         return response;
       })

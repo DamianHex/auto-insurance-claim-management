@@ -28,7 +28,6 @@ const App = () => {
           <Route path='/' element={<Homepage />} />
           <Route path='/profile' element={<UserProfileForm />} />
           <Route path='/claim' element={<ClaimSubmissionForm />} />
-          <Route path='/test' element={<Test />} />
         </Routes>
       </Auth0ProviderWithHistory>
     </div>

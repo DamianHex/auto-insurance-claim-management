@@ -16,18 +16,6 @@ function NavTabs() {
         >
           Home
         </NavLink>
-        {/* </li>
-      <li className='nav-item'> */}
-        {/* <NavLink
-          to='/login'
-          className={
-            location.pathname === "/login" ? "nav-link active" : "nav-link"
-          }
-        >
-          Login
-        </NavLink> */}
-        {/* </li>
-      <li className='nav-item'> */}
         <NavLink
           to='/profile'
           className={
@@ -36,8 +24,6 @@ function NavTabs() {
         >
           Profile
         </NavLink>
-        {/* </li>
-      <li className='nav-item'> */}
         <NavLink
           to='/claim'
           className={
@@ -46,17 +32,6 @@ function NavTabs() {
         >
           Claims
         </NavLink>
-        {/* </li>
-      <li> */}
-        <NavLink
-          to='/test'
-          className={
-            location.pathname === "/test" ? "nav-link active" : "nav-link"
-          }
-        >
-          Test
-        </NavLink>
-        {/* </li> */}
         {!isLoading && !user && (
           <button
             className='btn btn-primary btn-block'

@@ -46,6 +46,8 @@ function ClaimSubmissionForm() {
       description: formObject.description,
       gid: userId2
     });
+
+    window.location.replace('http://localhost:3000/profile')
   };
 
   return (
@@ -202,7 +204,7 @@ function ClaimSubmissionForm() {
                 />
               </div>
             </div>
-            <div className='row' >
+            <div className='row' hidden >
               <label htmlFor='GId' className='col-sm-3 col-form-label'>
                 GID
               </label>
