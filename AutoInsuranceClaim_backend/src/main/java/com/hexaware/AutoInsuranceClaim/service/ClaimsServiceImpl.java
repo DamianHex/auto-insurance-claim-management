@@ -43,7 +43,14 @@ public class ClaimsServiceImpl implements ClaimService{
     @Override
     public List<Claim> getAllClaimsByUserId(Long id) {
         List<Claim> claimList = new ArrayList<>();
-       claimList = claimRepo.findAll().stream().filter(claim -> claim.getUser().getUserId() == id).collect(Collectors.toList());
+       claimList = claimRepo.findAll().stream().filter(claim -> claim.getGid() == id).collect(Collectors.toList());
+        return claimList;
+    }
+
+    @Override
+    public List<Claim> getAllUnassignedClaimsByUserId(Long id) {
+        List<Claim> claimList = new ArrayList<>();
+        claimList = claimRepo.findAll().stream().filter(claim -> claim.getGid() == id).filter(c -> c.getStatus().equals("unassigned")).collect(Collectors.toList());
         return claimList;
     }
 
@@ -72,6 +79,7 @@ public class ClaimsServiceImpl implements ClaimService{
         Claim claim = claimRepo.findById(claimId).get();
         User user = userRepo.findById(userId).get();
         claim.setUser(user);
+        claim.setStatus("In Progress");
         return claimRepo.save(claim);
     }
 

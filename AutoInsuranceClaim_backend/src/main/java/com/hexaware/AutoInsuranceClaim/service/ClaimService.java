@@ -10,6 +10,8 @@ public interface ClaimService {
     List<Claim> getAllClaims();
 
     List<Claim> getUnassignedClaims();
+
+    public List<Claim> getAllUnassignedClaimsByUserId(Long id);
     Optional<Claim> getClaimById(Long id);
 
     List<Claim> getAllClaimsByUserId(Long id);

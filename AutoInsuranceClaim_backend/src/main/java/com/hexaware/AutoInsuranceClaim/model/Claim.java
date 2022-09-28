@@ -23,6 +23,7 @@ public class Claim {
     private String creationDate;
     private String status;
     private String description;
+    private long Gid;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "userId")

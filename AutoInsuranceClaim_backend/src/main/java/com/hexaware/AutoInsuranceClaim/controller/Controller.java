@@ -21,31 +21,33 @@ public class Controller {
     @Autowired
     UserService userService;
 
-    @GetMapping("/")
-    String homePage(){
-        return "Hello World!";
-    }
+//    @GetMapping("/")
+//    String homePage(){
+//        return "Hello World!";
+//    }
 
     //Claims CRUD
     @PostMapping("/claims")
     public Claim saveNewClaim (@RequestBody Claim claim){
         return claimService.createNewClaim(claim);
     }
+//
+//    @GetMapping("/claims")
+//    public List<Claim> getAllClaims(){
+//        return claimService.getAllClaims();
+//    }
 
-    @GetMapping("/claims")
-    public List<Claim> getAllClaims(){
-        return claimService.getAllClaims();
-    }
-
-    @GetMapping("/unassignedClaims")
-    public List<Claim> getUnassignedClaims() {
-        return claimService.getUnassignedClaims();
+    @GetMapping("/unassignedClaims/{id}")
+    public List<Claim> getAllUnassignedClaimsByUserId(@PathVariable Long id) {
+        return claimService.getAllUnassignedClaimsByUserId(id);
     }
 
     @GetMapping("/claim/{id}")
     public Optional<Claim> getClaimByID(@PathVariable Long id){
         return claimService.getClaimById(id);
     }
+
+
     // this will be used to update the status to rejected
     @PutMapping("/claim/{id}")
     public Claim updateClaim(@PathVariable long id , @RequestBody Claim claim){
@@ -90,7 +92,7 @@ public class Controller {
     }
 
     @GetMapping("/claims/user/{id}")
-    public List<Claim> getClaimsByUserId(@PathVariable Long id){
+    public List<Claim> getAllClaimsByUserId(@PathVariable Long id){
         return claimService.getAllClaimsByUserId(id);
     }
 
