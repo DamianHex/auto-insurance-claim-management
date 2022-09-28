@@ -21,21 +21,13 @@ public class Controller {
     @Autowired
     UserService userService;
 
-//    @GetMapping("/")
-//    String homePage(){
-//        return "Hello World!";
-//    }
 
     //Claims CRUD
     @PostMapping("/claims")
     public Claim saveNewClaim (@RequestBody Claim claim){
         return claimService.createNewClaim(claim);
     }
-//
-//    @GetMapping("/claims")
-//    public List<Claim> getAllClaims(){
-//        return claimService.getAllClaims();
-//    }
+
 
     @GetMapping("/unassignedClaims/{id}")
     public List<Claim> getAllUnassignedClaimsByUserId(@PathVariable Long id) {
@@ -50,14 +42,10 @@ public class Controller {
 
     // this will be used to update the status to rejected
     @PutMapping("/claim/{id}")
-    public Claim updateClaim(@PathVariable long id , @RequestBody Claim claim){
-        return claimService.updateClaim(claim, id);
+    public Claim rejectClaim(@PathVariable long id, @RequestBody Claim claim){
+        return claimService.updateClaim(id, claim);
     }
 
-//    @PutMapping("/claim/{claimId}/user/{userId}")
-//    public User assignUserToClaim(@PathVariable Long claimId, @PathVariable Long userId) {
-//       return userService.assignClaimToUser(claimId, userId);
-//    }
 
     @PutMapping("/claim/{claimId}/user/{userId}")
     public Claim assignUserToClaim(@PathVariable Long claimId, @PathVariable Long userId) {
@@ -68,12 +56,8 @@ public class Controller {
 
 
     @DeleteMapping("/claim/{id}")
-    public String deleteClaim(@PathVariable Long id){
-        Claim claim = claimService.getClaimById(id).get();
-        String name = String.valueOf(claim.getUser());
-        String message = "The claim for " + name + " has been deleted.";
-        claimService.deleteClaimById(id);
-        return message;
+    public void deleteClaim(@PathVariable Long id){
+    claimService.deleteClaimById(id);
     }
     // User CRUD
     @PostMapping("/users")
