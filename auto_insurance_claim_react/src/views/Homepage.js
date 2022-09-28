@@ -10,9 +10,6 @@ import CarImage from "../../src/images/car-insurance.jpeg";
 
 function Homepage() {
   const { user } = useAuth0();
-
-  console.log(user);
-
  
   return (
     <div style={{ textAlign: "center" }}>
@@ -32,4 +29,6 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default withAuthenticationRequired(Homepage, {
+  onRedirecting: () => <Loading />,
+});

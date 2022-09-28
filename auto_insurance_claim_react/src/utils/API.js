@@ -1,9 +1,7 @@
 import axios from "axios";
 
-
 axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 const api = "http://localhost:8080/api";
-
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -25,9 +23,13 @@ export default {
   },
 
   //Get All Claims
-  getAllUnassignedClaims: function() {
-    return axios
-      .get(api + "/unassignedClaims")
+  getAllUnassignedClaimsByUserId: function(id) {
+    axios({
+      method: "get",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      url: api + "/unassignedClaims/",
+      id: id,
+    })
       .then(function(response) {
         return response;
       })
@@ -36,34 +38,29 @@ export default {
       });
   },
 
-  //Get Single Claim
-  getClaimById: function(id) {
-    return axios
-      .get(api + "/claim/" + id)
-      .then(function(response) {
-        return response;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  },
+  // //Get Single Claim
+  // getClaimById: function(id) {
+  //   return axios
+  //     .get(api + "/claim/" + id)
+  //     .then(function(response) {
+  //       return response;
+  //     })
+  //     .catch(function(error) {
+  //       console.log(error);
+  //     });
+  // },
 
   getClaimsByUserId: function(id) {
-    return axios.get(api + "/claims/user/" + id).then(function(response) {
-      if (response.status === 500) {
-        return [];
-      } else {
-        return response;
-      }
-    });
-    // .catch(function(error) {
-    //   console.log(error);
-    // })
-  },
+    return axios.get(api + "/claims/user/" + id)
+    .then(function(response) {
+      console.log(response);
+      return response;
+    })
+    },
 
   assignUserToClaim: function(claimId, userId) {
     axios
-      .put(api + "claim/" + claimId + "/user/" + userId)
+      .put(api + "/claim/" + claimId + "/user/" + userId)
       .then(function(response) {
         return response;
       })
@@ -106,15 +103,13 @@ export default {
       data: data,
     })
       .then(function(response) {
-        console.log(response.data.userId)
+        console.log(response.data.userId);
         return response.data.userId;
       })
       .catch(function(error) {
         console.log(error);
       })
-      .finally(function(response) {
-        
-      })
+      .finally(function(response) {});
   },
   // Get Single User
   getUserById: function(id) {
@@ -163,5 +158,4 @@ export default {
         console.log(error);
       });
   },
-  
 };

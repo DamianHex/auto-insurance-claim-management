@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Header/index";
 import NavTabs from "./components/Navtabs";
 import { Route, Routes } from "react-router-dom";
-import UserRegisterForm from "./views/UserProfileForm";
+import UserProfileForm from "./views/UserProfileForm";
 import ClaimSubmissionForm from "./views/ClaimSubmissionForm";
 import LoginSignup from "./views/LoginSignup";
 import Test from "./views/Test";
@@ -26,8 +26,7 @@ const App = () => {
         <NavTabs />
         <Routes>
           <Route path='/' element={<Homepage />} />
-          <Route path='/login' element={<LoginSignup />} />
-          <Route path='/register' element={<UserRegisterForm />} />
+          <Route path='/profile' element={<UserProfileForm />} />
           <Route path='/claim' element={<ClaimSubmissionForm />} />
           <Route path='/test' element={<Test />} />
         </Routes>

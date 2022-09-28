@@ -29,9 +29,9 @@ function NavTabs() {
         {/* </li>
       <li className='nav-item'> */}
         <NavLink
-          to='/register'
+          to='/profile'
           className={
-            location.pathname === "/register" ? "nav-link active" : "nav-link"
+            location.pathname === "/profile" ? "nav-link active" : "nav-link"
           }
         >
           Profile

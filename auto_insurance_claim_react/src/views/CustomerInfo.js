@@ -42,7 +42,7 @@ return (
           />
         </div>
       </div>
-      <div className='row'>
+      {/* <div className='row'>
         <label htmlFor='GId' className='col-sm-3 col-form-label'>
           GID
         </label>
@@ -56,7 +56,7 @@ return (
             readOnly
           />
         </div>
-      </div>
+      </div> */}
       {/* just for testing  */}
       <div className='row'>
         <label htmlFor='newEmail' className='col-sm-3 col-form-label'>

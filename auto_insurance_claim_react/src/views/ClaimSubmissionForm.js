@@ -15,11 +15,10 @@ function ClaimSubmissionForm() {
   today = mm + "/" + dd + "/" + yyyy;
   const user = useAuth0();
   const { sub, email, given_name, family_name } = user.user;
-  const userId2 = Number(sub.slice(15));
-  console.log(userId2)
-  const [currentUser, setCurrentUser] = useState({});
+  const userId2 = Number(sub.slice(18));
   const [formObject, setFormObject] = useState({});
-  const [claim, setClaim] = useState({});
+  const [claim, setClaim ] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
 
   const textUpdate = (e) => {
     const { name, value } = e.target;
@@ -43,8 +42,9 @@ function ClaimSubmissionForm() {
       vehicleMake: formObject.vehicleMake,
       vehicleModel: formObject.vehicleModel,
       creationDate: today,
-      status: "unassigned",
+      status: "In Progress",
       description: formObject.description,
+      gid: userId2
     });
   };
 
@@ -199,6 +199,21 @@ function ClaimSubmissionForm() {
                   name='description'
                   placeholder='Please describe reason for your claim'
                   onChange={textUpdate}
+                />
+              </div>
+            </div>
+            <div className='row' >
+              <label htmlFor='GId' className='col-sm-3 col-form-label'>
+                GID
+              </label>
+              <div className='col-sm-8'>
+                <input
+                  type='text'
+                  className='form-control'
+                  name='gid'
+                  id='gid'
+                  defaultValue={userId2}
+                  readOnly
                 />
               </div>
             </div>

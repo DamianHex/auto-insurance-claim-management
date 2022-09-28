@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import API from "../../utils/API";
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Claims() {
-
+    const user = useAuth0();
+  const { sub } = user.user;
+  const userId2 = Number(sub.slice(18));
+  
   const [Claims, setClaims] = useState([])
   
   useEffect(() => {
-    API.getAllUnassignedClaims().then((res) => setClaims(res.data))
+    API.getClaimsByUserId(userId2).then((res) => setClaims(res.data))
   }, [])
 
-  const handleRejectClaim = (e) => {
-    e.preventDefault();
-    console.log(e);
-    let claimId = ((e) => e.target.claimId)
-    let data = ((e) => e.target)
-    // API.updateClaim(data, claimId)
+  const handleRejectClaim = (event) => {
+    API.assignUserToClaim(event, userId2)
+
   }
 
 return (
@@ -26,11 +27,14 @@ return (
     ) : (
       <div className='container'>
         {Claims.map((claim) => (
-          <form
-            id='vehicleCard'
-            key={claim.claimId}
-            onSubmit={handleRejectClaim}
-          >
+          <form id='vehicleCard' key={claim.claimId}>
+            <p>
+              <span style={{ fontWeight: "bold" }} name='claimId'>
+                {" "}
+                Claim Id:{" "}
+              </span>
+              {claim.claimId}
+            </p>
             <p>
               <span style={{ fontWeight: "bold" }}> Date Submitted: </span>
               {claim.creationDate}
@@ -62,8 +66,9 @@ return (
                 color: "black",
                 fontWeight: "bold",
               }}
+              onSubmit={handleRejectClaim(claim.claimId)}
             >
-              Reject Claim
+              Reject Case
             </button>
           </form>
         ))}
