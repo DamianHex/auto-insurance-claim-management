@@ -19,18 +19,9 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
     private String streetAddress;
     private String city;
     private String state;
     private String zip;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private Set<Claim> claims;
-
-//    public void addClaims(Claim claim) {
-//        this.claims.add(claim);
-//        System.out.println("Claim has been added!");
-//    }
 }

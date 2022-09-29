@@ -7,21 +7,17 @@ import java.util.Optional;
 
 public interface ClaimService {
 
-    List<Claim> getAllClaims();
 
-    List<Claim> getUnassignedClaims();
-
-    public List<Claim> getAllUnassignedClaimsByUserId(Long id);
-    Optional<Claim> getClaimById(Long id);
-
-    List<Claim> getAllClaimsByUserId(Long id);
+    List<Claim> getAllClaimsByUserGid(Long gid);
 
     Claim createNewClaim(Claim claim);
 
-    Claim updateClaim(Long id, Claim claim);
-
-    Claim assignUserToClaim(Long claimId, Long userId);
+    Claim rejectClaim(Long id, Claim claim);
 
     void deleteClaimById(Long id);
 
+    // not currently in use but here for possible future version implementation
+//    public List<Claim> getAllUnassignedClaimsByUserId(Long id);
+//
+//    Claim assignUserToClaim(Long claimId, Long userId);
 }

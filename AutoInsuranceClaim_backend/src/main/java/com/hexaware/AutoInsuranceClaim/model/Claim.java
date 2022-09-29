@@ -21,13 +21,9 @@ public class Claim {
     private String vehicleMake;
     private String vehicleModel;
     private String creationDate;
+    private String lastModifiedDate;
     private String status;
     private String description;
     private long Gid;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "userId")
-    private User user;
-
 
 }
