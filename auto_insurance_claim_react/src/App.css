@@ -37,19 +37,31 @@
   align-self: center;
 }
 
+#cardInfoBox {
+  border: black solid 2px;
+  padding: 10px;
+  background-color: lightgray;
+}
+
+#cardTitleBox {
+  text-align: center;
+  border: black solid 2px;
+  background-color: lightgray;}
+
 .col-form-label {
   text-decoration: underline;
   font-weight: bold;
 }
 
 #vehicleCard{
-  display: inline-block;
-  text-align: center;
+  min-width: 1000px;
+  min-height: 470px;
+  display: inline-table;
+  text-align: left;
   margin: 10px;
   padding: 25px;
-  width: 50%;
-  background-color: rgb(178, 203, 227);
-  border: solid black 2px;
+  background-color: rgb(208, 194, 213);
+  border: solid black 5px;
 }
 
 @keyframes App-logo-spin {

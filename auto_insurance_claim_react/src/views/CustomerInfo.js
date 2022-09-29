@@ -5,7 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 function CustomerInfo () {
     const user = useAuth0();
-    const { sub, email, given_name, family_name } = user.user;
+    const { email, given_name, family_name } = user.user;
 
 
 return (

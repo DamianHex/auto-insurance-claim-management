@@ -6,132 +6,92 @@ const api = "http://localhost:8080/api";
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   //POST Claim
-  saveNewClaim: function(data) {
+  saveNewClaim: function (data) {
     axios({
       method: "post",
       headers: { "Access-Control-Allow-Origin": "*" },
       url: api + "/claims",
       data: data,
     })
-      .then(function(response) {
+      .then(function (response) {
         console.log(response);
         return response;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   },
 
-  //Get All Claims
-  getAllUnassignedClaimsByUserId: function(id) {
-    axios({
-      method: "get",
-      headers: { "Access-Control-Allow-Origin": "*" },
-      url: api + "/unassignedClaims/",
-      id: id,
-    })
-      .then(function(response) {
-        return response;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  },
-
-  rejectClaim: function(id, data) {
-    axios({
-      method: "get",
-      headers: { "Access-Control-Allow-Origin": "*" },
-      url: api + "/claim/" + id,
-      id: id,
-    })
-      .then(function(response) {
-        return response;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  },
-
-  getClaimsByUserId: function(id) {
-    return axios.get(api + "/claims/user/" + id).then(function(response) {
-      return response;
-    });
-  },
-
-  assignUserToClaim: function(claimId, userId) {
-    axios
-      .put(api + "/claim/" + claimId + "/user/" + userId)
-      .then(function(response) {
-        return response;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  },
-
-
-  updateClaim: function(data, claimId) {
+  rejectClaim: function (data, claimId) {
     axios({
       method: "put",
       headers: { "Access-Control-Allow-Origin": "*" },
       url: api + "/claim/" + claimId,
       claimId: claimId,
-      data: data
+      data: data,
     })
-      .then(function(response) {
+      .then(function (response) {
         return response;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   },
 
+  getClaimsByUserId: function (id) {
+    return axios.get(api + "/claims/user/" + id).then(function (response) {
+      return response;
+    });
+  },
+
   // Delete Claim
-  deleteClaim: function(id) {
+  deleteClaim: function (id) {
     return axios
       .delete(api + "/claim/" + id)
-      .then(function(response) {
+      .then(function (response) {
         console.log(response);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   },
 
   // POST User
-  createUser: function(data) {
+  createUser: function (data) {
     axios({
       method: "post",
       headers: { "Access-Control-Allow-Origin": "*" },
       url: api + "/users",
       data: data,
     })
-      .then(function(response) {
+      .then(function (response) {
         console.log(response.data.userId);
         return response.data.userId;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       })
-      .finally(function(response) {});
+      .finally(function (response) {});
   },
   // Get Single User
-  getUserById: function(id) {
+  getUserById: function (id) {
     return axios({
       method: "get",
       headers: { "Access-Control-Allow-Origin": "*" },
       url: api + "/user/" + id,
       id: id,
     })
-      .then(function(response) {
+      .then(function (response) {
         // console.log(response.data)
         return response.data;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   },
+
+  //unused API calls but here for possible future version implementation
+
   // Update User
   // updateUser: function (data) {
   //   axios
@@ -152,14 +112,60 @@ export default {
   //       console.log(error);
   //     });
   // },
+
   // Delete User
-  deleteUser: function(id) {
-    axios
-      .delete(api + "/user/" + id)
-      .then(function(response) {
-        console.log(response);
+  // deleteUser: function (id) {
+  //   axios
+  //     .delete(api + "/user/" + id)
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // },
+
+  //Get All Claims
+  // getAllUnassignedClaimsByUserId: function (id) {
+  //   axios({
+  //     method: "get",
+  //     headers: { "Access-Control-Allow-Origin": "*" },
+  //     url: api + "/unassignedClaims/",
+  //     id: id,
+  //   })
+  //     .then(function (response) {
+  //       return response;
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // },
+
+  // assign user to Claim
+  // assignUserToClaim: function (claimId, userId) {
+  //   axios
+  //     .put(api + "/claim/" + claimId + "/user/" + userId)
+  //     .then(function (response) {
+  //       return response;
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // },
+
+  // update claim
+  updateClaim: function (data, claimId) {
+    axios({
+      method: "put",
+      headers: { "Access-Control-Allow-Origin": "*" },
+      url: api + "/claim/" + claimId,
+      claimId: claimId,
+      data: data,
+    })
+      .then(function (response) {
+        return response;
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   },

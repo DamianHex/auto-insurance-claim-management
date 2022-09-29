@@ -8,17 +8,22 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function ClaimSubmissionForm() {
   var today = new Date();
-  var dd = String(today.getDate()).padStart(2, "0");
-  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-  var yyyy = today.getFullYear();
+  var DD = String(today.getDate()).padStart(2, "0");
+  var MM = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var YYYY = today.getFullYear();
+  var HHMT = today.getHours();
+  var HH = (today.getHours() + 24) % 12 || 12;
+  var mm = (today.getMinutes() < 10 ? "0" : "") + today.getMinutes();
+  var ampm = HHMT >= 12 ? "pm" : "am";
 
-  today = mm + "/" + dd + "/" + yyyy;
+  today = MM + "/" + DD + "/" + YYYY;
+  let time = HH + ":" + mm + ampm;
+
+
   const user = useAuth0();
   const { sub, email, given_name, family_name } = user.user;
   const userId2 = Number(sub.slice(18));
   const [formObject, setFormObject] = useState({});
-  const [claim, setClaim ] = useState({});
-  const [currentUser, setCurrentUser] = useState({});
 
   const textUpdate = (e) => {
     const { name, value } = e.target;
@@ -41,7 +46,8 @@ function ClaimSubmissionForm() {
       vehicleYear: formObject.vehicleYear,
       vehicleMake: formObject.vehicleMake,
       vehicleModel: formObject.vehicleModel,
-      creationDate: today,
+      creationDate: today + " " + time,
+      lastModifiedDate: today + " " + time,
       status: "In Progress",
       description: formObject.description,
       gid: userId2
